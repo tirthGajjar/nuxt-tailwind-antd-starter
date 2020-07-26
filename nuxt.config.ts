@@ -88,6 +88,8 @@ const config: NuxtConfig = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://pwa.nuxtjs.org
+    '@nuxtjs/pwa',
   ],
   /*
    ** Axios module configuration
