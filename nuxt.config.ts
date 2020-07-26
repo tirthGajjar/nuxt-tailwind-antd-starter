@@ -64,6 +64,27 @@ const config: NuxtConfig = {
       },
     ],
   },
+  render: {
+    bundleRenderer: {
+      shouldPrefetch: (_file, type) => {
+        // if (type === 'script') {
+        //   if (/yourPageNameHere/.test(file)) {
+        //     return false
+        //   }
+        // }
+        if (type === 'css') {
+          return true
+        }
+        return true
+      },
+      shouldPreload: (_file, type) => {
+        if (type === 'css') {
+          return true
+        }
+        return true
+      },
+    },
+  },
   /*
    ** Global CSS
    */
