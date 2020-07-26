@@ -1,5 +1,7 @@
 import path from 'path'
 import { NuxtConfig } from '@nuxt/types'
+import TerserPlugin from 'terser-webpack-plugin'
+
 import webpack from 'webpack'
 
 const config: NuxtConfig = {
@@ -27,8 +29,40 @@ const config: NuxtConfig = {
         name: 'description',
         content: process.env.npm_package_description || '',
       },
+      {
+        name: 'msapplication-TileColor',
+        content: '#da532c',
+      },
+      {
+        name: 'theme-color',
+        content: '#1A64E2',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/png', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'mask-icon',
+        href: '/safari-pinned-tab.svg',
+        color: '#5bbad5',
+      },
+    ],
   },
   /*
    ** Global CSS
@@ -54,7 +88,6 @@ const config: NuxtConfig = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
   ],
   /*
    ** Axios module configuration
@@ -65,7 +98,12 @@ const config: NuxtConfig = {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
+  loading: {
+    color: '#1A64E2',
+  },
   build: {
+    extractCSS: true,
+    parallel: true,
     extend(config: any) {
       // bunlde size too large #325
       // https://github.com/vueComponent/ant-design-vue/issues/325#issue-393050881
@@ -83,6 +121,20 @@ const config: NuxtConfig = {
           './utils/antd-icons.js'
         )
       }
+    },
+    postcss: {
+      plugins: {
+        cssnano: {
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true,
+              },
+            },
+          ],
+        },
+      },
     },
     // Config to use ant-design-vue in efficient way
     /* TODO: We are using less-loader 5.0.0 because limited typescript support
@@ -103,6 +155,9 @@ const config: NuxtConfig = {
     loaders: {
       less: {
         javascriptEnabled: true,
+        modifyVars: {
+          'primary-color': '#1A64E2',
+        },
       },
     },
     transpile: [/^ant-design-vue($|\/)/],
@@ -118,6 +173,15 @@ const config: NuxtConfig = {
           },
           'ant-design-vue',
         ],
+      ],
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: false,
+        }),
       ],
     },
   },

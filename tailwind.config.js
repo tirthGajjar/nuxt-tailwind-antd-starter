@@ -6,7 +6,9 @@
  */
 module.exports = {
   theme: {},
-  variants: {},
+  variants: {
+    typography: [],
+  },
   plugins: [
     require('@tailwindcss/ui')({
       layout: 'sidebar',
@@ -20,7 +22,9 @@ module.exports = {
       'layouts/**/*.vue',
       'pages/**/*.vue',
       'plugins/**/*.js',
-      'nuxt.config.js',
+      'plugins/**/*.ts',
+      'nuxt.config.ts',
+      '*/**/*.vue',
     ],
   },
 }

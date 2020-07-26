@@ -1,27 +1,8 @@
 <template>
   <div class="container">
-    <Button type="primary">Enjoy it</Button>
-    <div>
+    <div class="space-y-2">
       <Logo />
-      <h1 class="title">rax-app-antd</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <Button type="primary">Enjoy it</Button>
     </div>
   </div>
 </template>
@@ -37,7 +18,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
