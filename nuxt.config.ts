@@ -77,12 +77,8 @@ const config: NuxtConfig = {
         }
         return true
       },
-      shouldPreload: (_file, type) => {
-        if (type === 'css') {
-          return true
-        }
-        return true
-      },
+      shouldPreload: (_file, type) =>
+        ['script', 'style', 'font'].includes(type),
     },
   },
   /*
