@@ -112,7 +112,19 @@ const config: NuxtConfig = {
     color: '#1A64E2',
   },
   build: {
-    // extractCSS: true,
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      },
+    },
     parallel: true,
     extend(config: any) {
       // bunlde size too large #325
