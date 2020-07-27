@@ -1,0 +1,11 @@
+{
+  "netlify.api_token": "766169d5cfae7bea475cb75505e09aa1ff08f47dd4fe102603c890b4cce40b28",
+  "netlify.site_id": "rax-app",
+  "netlify.build_hook": "https://api.netlify.com/build_hooks/5f1e452eb5e2494df1753b2a",
+  "netlify.build_status_colors": {
+    "building": "#475569",
+    "enqueued": "#fdf6b2",
+    "deploy-successful": "#31c48d",
+    "error": "#f98080"
+  }
+}

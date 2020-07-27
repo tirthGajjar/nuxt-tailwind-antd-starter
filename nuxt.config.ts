@@ -66,17 +66,8 @@ const config: NuxtConfig = {
   },
   render: {
     bundleRenderer: {
-      shouldPrefetch: (_file, type) => {
-        // if (type === 'script') {
-        //   if (/yourPageNameHere/.test(file)) {
-        //     return false
-        //   }
-        // }
-        if (type === 'css') {
-          return true
-        }
-        return true
-      },
+      // shouldPrefetch: (_file, type) =>
+      //   ['script', 'style', 'font'].includes(type),
       shouldPreload: (_file, type) =>
         ['script', 'style', 'font'].includes(type),
     },
@@ -121,7 +112,7 @@ const config: NuxtConfig = {
     color: '#1A64E2',
   },
   build: {
-    extractCSS: true,
+    // extractCSS: true,
     parallel: true,
     extend(config: any) {
       // bunlde size too large #325
