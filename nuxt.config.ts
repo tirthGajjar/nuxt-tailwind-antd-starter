@@ -124,6 +124,13 @@ const config: NuxtConfig = {
           },
         },
       },
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: false,
+        }),
+      ],
     },
     parallel: true,
     extend(config: any) {
@@ -195,15 +202,6 @@ const config: NuxtConfig = {
           },
           'ant-design-vue',
         ],
-      ],
-    },
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          cache: true,
-          parallel: false,
-        }),
       ],
     },
   },
