@@ -66,8 +66,17 @@ const config: NuxtConfig = {
   },
   render: {
     bundleRenderer: {
-      // shouldPrefetch: (_file, type) =>
-      //   ['script', 'style', 'font'].includes(type),
+      shouldPrefetch: (_file, type) => {
+        // if (type === 'script') {
+        //   if (/yourPageNameHere/.test(file)) {
+        //     return false
+        //   }
+        // }
+        if (type === 'style') {
+          return true
+        }
+        return true
+      },
       shouldPreload: (_file, type) =>
         ['script', 'style', 'font'].includes(type),
     },
@@ -113,25 +122,6 @@ const config: NuxtConfig = {
   },
   build: {
     extractCSS: true,
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.(css|vue)$/,
-            chunks: 'all',
-            enforce: true,
-          },
-        },
-      },
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          cache: true,
-          parallel: false,
-        }),
-      ],
-    },
     parallel: true,
     extend(config: any) {
       // bunlde size too large #325
@@ -202,6 +192,15 @@ const config: NuxtConfig = {
           },
           'ant-design-vue',
         ],
+      ],
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: false,
+        }),
       ],
     },
   },
