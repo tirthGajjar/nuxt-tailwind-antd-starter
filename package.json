@@ -29,7 +29,7 @@
     "@tailwindcss/ui": "^0.4.0",
     "@vue/composition-api": "^1.0.0-beta.6",
     "ant-design-vue": "^1.6.4",
-    "nuxt": "^2.13.3"
+    "nuxt": "^3.4.3"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^2.0.0",
